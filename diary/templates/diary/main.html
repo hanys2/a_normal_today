@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Stylish" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+    <title>그래도 괜찮은 하루</title>
+</head>
+{% block block %}
+<div class="bgImg">
+    <img src="{% static 'image/bg2.jpg' %}" alt="">
+</div>
+<body class="main_body">
+    
+    <header>
+        <div class="link_box">
+        {% if user.is_authenticated %}
+            <a href="{%url 'logout' %}">로그아웃</a>
+        {% else %}
+            <a href="{%url 'login' %}">로그인</a>
+            <a href="">회원가입</a>
+        {% endif %}
+        </div>
+    </header>
+    <section>
+        <div>그래도 괜찮은 하루였던</div>
+        <div>당신의 오늘을 기록해보세요</div>
+        <div class="write_btn">
+        {% if user.is_authenticated %}
+            <a href="{% url 'index' %}">일기 쓰기</a>
+        {% else %}
+            <script>
+                $(".write_btn").click(function(){
+                    alert("로그인을 해주세요")
+                })
+                
+            </script>
+            <a href="">일기 쓰기</a>
+        {% endif %} 
+        </div>   
+    </section>
+     
+</body>
+{% endblock %}
+</html>

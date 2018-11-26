@@ -1,0 +1,47 @@
+{% extends "diary/main.html" %}
+{% load static %}
+{% block block %}
+    <body>
+        <header>
+            <div class="link_box"> 
+                <a href="{%url 'logout' %}">로그아웃</a>
+            </div><br>
+            <h1 class="title">
+                <a href="{%url 'main' %}">그래도 괜찮은 하루</a>
+            </h1>
+            
+        </header>
+        <hr><br>
+        <div class="grid">
+                {% for i in post %}
+            <div class="grid-item">
+                <div class="header">
+                    <div class="date">
+                        <div>{{i.d_time}}</div>
+                    </div>
+                    <div class="d_title">
+                        <div>{{i.title}}</div>
+                        <div><span>{{i.song}}</span>-<span></span>{{i.singer}}</div>   
+                    </div>
+                    <div class="content">
+                        <div class="d_img">
+                            <img src="{{ i.photo_thumbnail.url }}" alt="">
+                        </div>
+                        <a href=""><div>내용보기</div></a>  
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </body>
+    <script>
+        $('.grid').masonry({
+            itemSelector: '.grid-item',
+            columnWidth: 160,
+            horizontalOrder: true,
+                
+        });
+
+    </script>
+{% endblock %}

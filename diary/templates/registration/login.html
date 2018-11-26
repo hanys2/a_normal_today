@@ -1,0 +1,30 @@
+{% extends "diary/main.html" %}
+{% block block %}
+<body>
+    <div class="container login_box">
+        <div class="title">LOGIN</div>
+        {% if form.errors %}
+            <script>
+                alert("비밀번호가 일치하지 않습니다. 다시 시도해주세요.")
+            </script>
+        {% endif %}
+        <form class="login_form" method="post" action="{% url 'login'%}">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password.label_tag }}</td>
+                    <td>{{ form.password }}</td>
+                </tr>
+            </table>
+            <input type="submit" value="login" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+        
+    </div>
+
+</body>
+{% endblock %}
