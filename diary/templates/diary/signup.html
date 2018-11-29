@@ -1,0 +1,23 @@
+{% extends "diary/main.html" %}
+{% load static %}
+{% block block %}
+<body class="register_body">
+    <header>
+        <h1 class="title">
+            <a href="{%url 'main' %}">그래도 괜찮은 하루</a>
+        </h1>
+    </header>
+    <section class="user_section">
+        <div class="user_img">
+            <img src="{% static 'image/img.jpg' %}" alt="">
+        </div>
+        <div>
+            <h1 class="title">회원가입</h1>
+            {% include 'include/form.html' with form=signup_form submit_title='회원가입' %}
+        </div>
+        
+        
+    </section>
+</body>
+
+{% endblock %}

@@ -1,30 +1,35 @@
 {% extends "diary/main.html" %}
+{% load static %}
 {% block block %}
-<body>
-    <div class="container login_box">
-        <div class="title">LOGIN</div>
-        {% if form.errors %}
-            <script>
-                alert("비밀번호가 일치하지 않습니다. 다시 시도해주세요.")
-            </script>
-        {% endif %}
-        <form class="login_form" method="post" action="{% url 'login'%}">
-            {% csrf_token %}
-            <table>
-                <tr>
-                    <td>{{ form.username.label_tag }}</td>
-                    <td>{{ form.username }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form.password.label_tag }}</td>
-                    <td>{{ form.password }}</td>
-                </tr>
-            </table>
-            <input type="submit" value="login" />
-            <input type="hidden" name="next" value="{{ next }}" />
-        </form>
-        
-    </div>
+<body class="register_body">
+    <header>
+        <h1 class="title">
+            <a href="{%url 'main' %}">그래도 괜찮은 하루</a>
+        </h1>
+    </header>
+    <section class="user_section">
+        <div class="user_img">
+            <img src="{% static 'image/img.jpg' %}" alt="">
+        </div>
+        <div>
+            <h1 class="title">LOGIN</h1>
+                {% if form.errors %}
+                    <script>
+                        alert("비밀번호가 일치하지 않습니다. 다시 시도해주세요.")
+                    </script>
+                {% endif %}
+                <form class="login_form" method="post" action="{% url 'login'%}">
+                    {% csrf_token %}
+                    {{ form.username }} <br>
+                    {{ form.password }} <br>
 
+                    <input type="submit" value="login" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </form>
+                <br><a href="{%url 'signup' %}">회원가입</a>
+                
+        </div>
+    </section>
 </body>
+
 {% endblock %}

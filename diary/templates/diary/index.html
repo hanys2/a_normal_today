@@ -11,23 +11,26 @@
             </h1>
             
         </header>
-        <hr><br>
+        <div class="write_btn">
+            <a href="{% url 'post_new' %}">일기쓰기</a>
+        </div>
+        
         <div class="grid">
-                {% for i in post %}
+            {% for i in post %}
             <div class="grid-item">
                 <div class="header">
                     <div class="date">
-                        <div>{{i.d_time}}</div>
+                        <div>
+                        {{i.created_date.month}}.      
+                        {{i.created_date.day}}    
+                    </div>
                     </div>
                     <div class="d_title">
                         <div>{{i.title}}</div>
                         <div><span>{{i.song}}</span>-<span></span>{{i.singer}}</div>   
                     </div>
                     <div class="content">
-                        <div class="d_img">
-                            <img src="{{ i.photo_thumbnail.url }}" alt="">
-                        </div>
-                        <a href=""><div>내용보기</div></a>  
+                        <a href="{% url 'post_detail' pk=i.pk %}"><div>내용보기</div></a>  
                     </div>
                 </div>
             </div>

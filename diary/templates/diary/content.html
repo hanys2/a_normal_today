@@ -1,42 +1,33 @@
-<html>
-    <head>
-        <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto|Stylish" rel="stylesheet">        
-        <link rel="stylesheet" href="style.css">
-    </head>
+{% extends "diary/main.html" %}
+{% load static %}
+{% block block %}
     <body>
         <header>
-            <h1 class="title">그래도 괜찮은 하루</h1>
+            <div class="link_box"> 
+                <a href="{%url 'logout' %}">로그아웃</a>
+            </div><br>
+            <h1 class="title">
+                <a href="{%url 'main' %}">그래도 괜찮은 하루</a>
+            </h1><br><br>
         </header>
         <div class="container">
             <div class="date">
-                <div>11.2</div>
+                <div>{{post.created_date.month}}.{{post.created_date.day}}</div>
             </div>
             <div class="d_title">
-                <div>힘들었던 오늘이야 우아악악악아</div>
-                <div>작성시간 11:39</div>
+                <div>{{post.title}}</div>
+                <div>{{post.created_date}}</div>
             </div>
             <div class="music">
-                <div>오늘의 음악</div>
-                <iframe width="500" height="300" src="https://www.youtube.com/embed/_Zgc12yL5ss?modestbranding=1" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; " allowfullscreen></iframe>
-                    
+                <div>{{post.song}}-{{post.singer}}</div>    
+                <div><a href="{{post.link}}">노래 듣기</a></div>    
             </div>
+            <img src="{{post.image.url}}" alt="">
             <div class="content">
-                설레는 이상은 크고 아름다우냐? 가치를 피가 뛰노는 동력은 그들은 석가는 귀는 뼈 천자만홍이 봄바람이다. 그들에게 놀이 오직 지혜는 꽃이 천자만홍이 고행을 것이다. 아름답고 방황하였으며, 
-                청춘을 봄바람이다. 아니한 피가 대한 내는 이성은 청춘을 할지라도 것이다. 그들에게 이상은 피부가 황금시대의 보라. 목숨이 바로 청춘의 자신과 밥을 곳이 귀는 청춘의 것이다. 눈이 사랑의 천지는 그들에게 바로 일월과 따뜻한 구하지 풀밭에 사막이다. 구하지 없으면, 열매를 뿐이다.
-                같이 곳이 가치를 가치를 대고, 튼튼하며, 것이다. 싹이 사라지지 이상의 따뜻한 충분히 대고, 봄바람이다. 심장은 얼마나 내는 가진 피가 공자는 아름다우냐? 수 두기 위하여 뜨거운지라, 
-                그러므로 따뜻한 같이 피어나는 것이다. 타오르고 같이, 피가 품고 같으며, 심장의 이상 온갖 있는가? 청춘에서만 이상이 고행을 맺어, 열락의 얼마나 있음으로써 위하여서 것이다. 우리 청춘의 풀밭에 있을 얼음과 인도하겠다는 힘있다. 같지 그림자는 트고, 광야에서 속잎나고, 아름다우냐?
-                찾아 살았으며, 생생하며, 밝은 길지 투명하되 운다. 그들의 무엇을 찾아다녀도, 거친 그러므로 우리의 넣는 사막이다. 피가 방지하는 끓는 커다란 아니더면, 있는가?
-                방지하는 뜨고, 같은 황금시대를 생의 인간이 역사를 튼튼하며, 반짝이는 것이다. 수 유소년에게서 공자는 품으며, 크고 때문이다. 노년에게서 그들은 싹이 얼음이 불어 그들은 이것이다. 
-                곳으로 가지에 넣는 안고, 뭇 아름다우냐? 청춘에서만 불어 청춘이 능히 힘차게 사막이다. 놀이 사람은 못할 설산에서 교향악이다. 영락과 소담스러운 불러 풀이 옷을 가장 모래뿐일 이것을 말이다. 우리의 곧 하는 위하여 용감하고 용기가 피가 생의 듣는다. 소리다.이것은 미인을 눈에 구하기 바이며, 어디 눈이 같으며, 얼음에 이것이다.
-            </div>
-            
-            <div class="img">
-                <img src="test.gif" alt="">
-            </div>
-            <a href="">수정</a><a href="">삭제</a>
+                {{post.text}}
+            </div><br>
+            <a href="{% url 'index' %}">목록으로</a>
         </div>
-        <a href="index.html">목록으로</a>
-
+        
     </body>
-</html>
+    {% endblock %}
